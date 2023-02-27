@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<!-- Header -->
+<th:block th:replace="~{fragments/header :: headerFragment}"></th:block>
+<!-- Section-->
+<section class="py-5">
+	<div class="container px-4 px-lg-5 mt-5">
+		<h1 class="display-4 fw-bolder" style="text-align: center;">재고 현황</h1>
+		<a class="btn btn-outline-dark" th:href="@{/item/regist}" style="float: right;"> 제품 등록 </a>
+		<table class="table">
+			<thead>
+				<tr>
+					<th scope="col">No</th>
+					<th scope="col">제품명</th>
+					<th scope="col">재고</th>
+					<th scope="col">판매량</th>
+					<th scope="col">최근 입고일</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="item : ${items}">
+					<th scope="row" th:text="${itemStat.count}"></th>
+					<td><a th:href="@{/item/{id}(id = ${item.itemId})}" th:text="${item.itemName}"></a></td>
+					<td th:text="${item.itemStock}"></td>
+					<td th:text="${item.itemCount}"></td>
+					<td th:text="${item.regDate}"></td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+</section>
+<!-- Footer-->
+<th:block th:replace="~{fragments/footer :: footerFragment}"></th:block>
+</body>
+</html>

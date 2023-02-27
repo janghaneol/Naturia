@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<!-- Header -->
+<th:block th:replace="~{fragments/header :: headerFragment}"></th:block>
+<!-- Section-->
+<section class="py-5">
+	<div class="container w-25">
+		<h1 class="display-4 fw-bolder" style="text-align: center;">제품 재고 수정</h1>
+		
+		<form action="itemModify.html" th:action th:object="${item}" method="post">
+		
+		<div class="form-floating mb-3">
+			<input type="text" class="form-control" id="itemName" th:field="*{itemName}" placeholder="제품명" readonly="readonly"> 
+			<label for="floatingInput">제품명</label>
+		</div>
+		
+		<div class="form-floating">
+			<input type="text" class="form-control" id="itemStock" th:field="*{itemStock}" placeholder="재고량"> 
+			<label for="floatingPassword">재고량</label>
+		</div>
+		
+		<button class="btn btn-outline-dark" type="reset"	style="float: right; margin: 5px;">취소</button>
+		<button class="btn btn-outline-dark" type="submit"	style="float: right; margin: 5px;">수정</button>
+		
+		</form>
+		
+	</div>
+</section>
+</body>
+<!-- Footer-->
+<th:block th:replace="~{fragments/footer :: footerFragment}"></th:block>
+</html>

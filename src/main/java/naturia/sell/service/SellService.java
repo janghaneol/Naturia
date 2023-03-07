@@ -25,8 +25,12 @@ public class SellService {
 	}
 	
 	public List<Sell> sellAllView(){
-		return sellRepository.findAll();
+		return sellRepository.findAllByOrderBySellDateDesc();
 	}
 	
+	public void sellDelete(int sellId) {
+		Sell sell = sellRepository.findById(sellId).get();
+		sellRepository.delete(sell);
+	}
 	
 }

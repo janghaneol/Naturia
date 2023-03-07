@@ -1,5 +1,9 @@
 package naturia.orders.entity;
 
+import java.time.LocalDateTime;
+
+import org.hibernate.annotations.DynamicInsert;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -18,6 +22,7 @@ import naturia.sell.entity.Sell;
 @Entity
 @NoArgsConstructor
 @AllArgsConstructor
+@DynamicInsert
 @SequenceGenerator(
 		name = "orders_seq_gen",
 		sequenceName = "orders_seq",
@@ -38,6 +43,12 @@ public class Orders {
 	
 	@Column(name="sell_id")
 	private Integer sellId;
+	
+	@Column(name="order_count")
+	private Integer orderCount;
+	
+	@Column(name = "order_date")
+	private LocalDateTime orderDate;
 	
 	@ManyToOne
 	@JoinColumn(name="sell_id",insertable = false, updatable = false)

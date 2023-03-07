@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<!-- Header -->
+<th:block th:replace="~{fragments/header :: headerFragment}"></th:block>
+<section class="py-5">
+	<div class="container w-50">
+		<h1 class="display-4 fw-bolder" style="text-align: center;">판매 등록</h1>
+		<!-- 판매등록 정보 -->
+		<div class="row">
+			<div class="col">
+				<div class="form-floating mb-3">
+					<input type="text" class="form-control" id="store" th:value="${sell.store}" placeholder="지점명" th:readonly="${sell.store != null}"> 
+					<label for="floatingInput">지점명</label>
+				</div>
+			</div>
+			
+			<div class="col-2">
+				<div class="form-floating">
+					<input type="text" class="form-control" id="manager" th:value="${sell.manager}" placeholder="담당자" th:readonly="${sell.manager != null}"> 
+					<label for="floatingPassword">담당자 이름</label>
+				</div>
+			</div>
+			
+			<div class="col-2">
+				<div class="form-floating">
+					<input type="text" class="form-control" id="date" th:value="${#temporals.format(sell.sellDate, 'yyyy-MM-dd')}" placeholder="등록일" th:readonly="${sell.manager != null}"> 
+					<label for="floatingPassword">등록일</label>
+				</div>
+			</div>
+			
+		</div>
+			
+		<!-- 제품 등록하는 위치 -->
+		<form action="orderRegist.html" th:action method="post" th:object="${item}">
+			<div class="row">
+				<div class="col-4">
+					<div class="form-floating">
+						<input class="form-control" list="datalistOptions" th:name="itemName" placeholder="제품명" autofocus="autofocus">
+						<label for="floatingPassword">제품명</label>
+						<datalist id="datalistOptions">
+							<option th:each="item : ${item}" th:value="${item.itemName}" th:label="${item.itemStock}">
+						</datalist>
+					</div>
+				</div>
+			
+				<div class="col-2">
+					<div class="form-floating">
+						<input type="text" class="form-control" th:name="orderCount" placeholder="수량">
+						<label for="floatingPassword">수량</label>
+					</div>
+				</div>
+			
+				<div class="col-3">
+					<button type="submit" class="btn btn-success btn-lg" style="margin-top: 3px;">등록</button>
+					<span>
+						<a th:href="@{/sale/{id}/delete(id = ${sell.sellId} )}" class="btn btn-danger btn-lg" style="margin-top: 3px;">전표삭제</a>
+					</span>	
+				</div>
+				
+				
+			</div>
+		</form>
+	</div>
+	
+	<!-- 등록한 제품 나타내는 위치 -->
+	<div class="container w-50" style="margin-top: 20px;">
+		<table class="table table-bordered table-responsive">
+			<thead>
+				<tr>
+					<th scope="col">No</th>
+					<th scope="col">제품명</th>
+					<th scope="col">판매개수</th>
+					<th scope="col">상태</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="order : ${order}">
+					<th scope="row" th:text="${orderStat.count}"></th>
+					<td th:text="${order.item.itemName}"></td>
+					<td th:text="${order.orderCount}"></td>
+					<td><a type="button" class="btn btn-danger btn-sm" th:href="@{/sale/{param1}/{param2}(param1=${order.sellId}, param2=${order.id})}">삭제</a></td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+	
+</section>
+</body>
+<!-- Footer-->
+<th:block th:replace="~{fragments/footer :: footerFragment}"></th:block>
+</html>

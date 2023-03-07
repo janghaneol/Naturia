@@ -3,7 +3,8 @@ package naturia.item.entity;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
-
+import org.hibernate.annotations.DynamicInsert;
+import org.springframework.boot.context.properties.bind.DefaultValue;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -22,21 +23,22 @@ import lombok.RequiredArgsConstructor;
 @Data
 @AllArgsConstructor
 @RequiredArgsConstructor
+@DynamicInsert
 public class Item {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "item_seq_gen")
 	@Column(name = "item_id")
-	private int itemId;
+	private Integer itemId;
 	
 	@Column(name = "item_name")
 	private String itemName;
 	
 	@Column(name = "item_stock")
-	private int itemStock;
+	private Integer itemStock;
 	
 	@Column(name = "item_count")
-	private int itemCount;
+	private Integer itemCount;
 	
 	@Column(name = "img_cont_type")
 	private String imgContType;

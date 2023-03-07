@@ -23,11 +23,12 @@
 					<td><a th:href="@{/item/{id}(id = ${item.itemId})}" th:text="${item.itemName}"></a></td>
 					<td th:text="${item.itemStock}"></td>
 					<td th:text="${item.itemCount}"></td>
-					<td th:text="${item.regDate}"></td>
+					<td th:text="${#temporals.format(item.regDate, 'yyyy-MM-dd HH:mm:ss')}"></td>
 				</tr>
 			</tbody>
 		</table>
 	</div>
+	
 </section>
 <!-- Footer-->
 <th:block th:replace="~{fragments/footer :: footerFragment}"></th:block>

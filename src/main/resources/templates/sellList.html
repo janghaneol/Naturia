@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<!-- Header -->
+<th:block th:replace="~{fragments/header :: headerFragment}"></th:block>
+<!-- Section-->
+<section class="py-5">
+	<div class="container px-4 px-lg-5 mt-5">
+		<h1 class="display-4 fw-bolder" style="text-align: center;">판매 현황</h1>
+		<table class="table">
+			<thead>
+				<tr>
+					<th scope="col">No</th>
+					<th scope="col">거래처명</th>
+					<th scope="col">담당자</th>
+					<th scope="col">판매 등록일</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="sell : ${sell}">
+					<th scope="row" th:text="${#temporals.format(sell.sellDate, 'yy/MM/dd')}"></th>
+					<td><a th:href="@{/sale/{id}(id = ${sell.sellId})}" th:text="${sell.store}"></a></td>
+					<td th:text="${sell.manager}"></td>
+					<td th:text="${#temporals.format(sell.sellDate, 'yyyy-MM-dd HH:mm:ss')}"></td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+</section>
+<!-- Footer-->
+<th:block th:replace="~{fragments/footer :: footerFragment}"></th:block>
+</body>
+</html>

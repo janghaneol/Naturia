@@ -31,6 +31,10 @@ public class ItemService {
 		return itemRepository.findAll();
 	}
 	
+	public Item findItemName(String itemName) {
+		return itemRepository.findAllByItemName(itemName);
+	}
+	
 	public void itemModify(Item item, int id) {
 		Item updateItem = itemRepository.findById(id).get();
 		updateItem.setItemName(item.getItemName());
@@ -38,5 +42,10 @@ public class ItemService {
 		updateItem.setRegDate(LocalDateTime.now());
 		updateItem.setItemStock(item.getItemStock());
 		itemRepository.save(updateItem);
+	}
+	
+	public void deleteItem(int itemId) {
+		Item item = itemRepository.findById(itemId).get();
+		itemRepository.delete(item);
 	}
 }

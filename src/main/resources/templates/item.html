@@ -14,16 +14,18 @@
 					<th scope="col">제품명</th>
 					<th scope="col">재고</th>
 					<th scope="col">판매량</th>
-					<th scope="col">최근 입고일</th>
+					<th scope="col">최근 수정일</th>
+					<th scope="col"></th>
 				</tr>
 			</thead>
 			<tbody>
 				<tr th:each="item : ${items}">
 					<th scope="row" th:text="${itemStat.count}"></th>
-					<td><a th:href="@{/item/{id}(id = ${item.itemId})}" th:text="${item.itemName}"></a></td>
+					<td><a th:text="${item.itemName}"></a></td>
 					<td th:text="${item.itemStock}"></td>
 					<td th:text="${item.itemCount}"></td>
 					<td th:text="${#temporals.format(item.regDate, 'yyyy-MM-dd HH:mm:ss')}"></td>
+					<td><a class="btn btn-primary btn-sm" th:href="@{/item/{id}(id = ${item.itemId})}" th:text="재고수정"></a></td>
 				</tr>
 			</tbody>
 		</table>

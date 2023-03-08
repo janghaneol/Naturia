@@ -13,14 +13,16 @@
 					<th scope="col">거래처명</th>
 					<th scope="col">담당자</th>
 					<th scope="col">판매 등록일</th>
+					<th scope="col"></th>
 				</tr>
 			</thead>
 			<tbody>
 				<tr th:each="sell : ${sell}">
 					<th scope="row" th:text="${#temporals.format(sell.sellDate, 'yy/MM/dd')}"></th>
-					<td><a th:href="@{/sale/{id}(id = ${sell.sellId})}" th:text="${sell.store}"></a></td>
+					<td><a th:text="${sell.store}"></a></td>
 					<td th:text="${sell.manager}"></td>
 					<td th:text="${#temporals.format(sell.sellDate, 'yyyy-MM-dd HH:mm:ss')}"></td>
+					<td><a class="btn btn-primary btn-sm" th:text="전표수정" th:href="@{/sale/{id}(id = ${sell.sellId})}"></a></td>
 				</tr>
 			</tbody>
 		</table>

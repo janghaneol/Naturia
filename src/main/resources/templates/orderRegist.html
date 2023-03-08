@@ -7,7 +7,7 @@
 		<h1 class="display-4 fw-bolder" style="text-align: center;">판매 등록</h1>
 		<!-- 판매등록 정보 -->
 		<div class="row">
-			<div class="col">
+			<div class="col-6">
 				<div class="form-floating mb-3">
 					<input type="text" class="form-control" id="store" th:value="${sell.store}" placeholder="지점명" th:readonly="${sell.store != null}"> 
 					<label for="floatingInput">지점명</label>
@@ -17,11 +17,11 @@
 			<div class="col-2">
 				<div class="form-floating">
 					<input type="text" class="form-control" id="manager" th:value="${sell.manager}" placeholder="담당자" th:readonly="${sell.manager != null}"> 
-					<label for="floatingPassword">담당자 이름</label>
+					<label for="floatingPassword">담당자</label>
 				</div>
 			</div>
 			
-			<div class="col-2">
+			<div class="col-4">
 				<div class="form-floating">
 					<input type="text" class="form-control" id="date" th:value="${#temporals.format(sell.sellDate, 'yyyy-MM-dd')}" placeholder="등록일" th:readonly="${sell.manager != null}"> 
 					<label for="floatingPassword">등록일</label>
@@ -33,7 +33,7 @@
 		<!-- 제품 등록하는 위치 -->
 		<form action="orderRegist.html" th:action method="post" th:object="${item}">
 			<div class="row">
-				<div class="col-4">
+				<div class="col-6">
 					<div class="form-floating">
 						<input class="form-control" list="datalistOptions" th:name="itemName" placeholder="제품명" autofocus="autofocus">
 						<label for="floatingPassword">제품명</label>
@@ -50,7 +50,7 @@
 					</div>
 				</div>
 			
-				<div class="col-3">
+				<div class="col-4">
 					<button type="submit" class="btn btn-success btn-lg" style="margin-top: 3px;">등록</button>
 					<span>
 						<a th:href="@{/sale/{id}/delete(id = ${sell.sellId} )}" class="btn btn-danger btn-lg" style="margin-top: 3px;">전표삭제</a>

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<!-- Header -->
+<th:block th:replace="~{fragments/header :: headerFragment}"></th:block>
+<section class="py-5">
+	<div class="container">
+		<!-- 판매등록 정보 -->
+		<div class="row">
+			<div class="col-6">
+				<div class="form-floating mb-3">
+					<input type="text" class="form-control" id="store" th:value="${sell.store}" placeholder="지점명" th:readonly="${sell.store != null}"> 
+					<label for="floatingInput">지점명</label>
+				</div>
+			</div>
+			
+			<div class="col-2">
+				<div class="form-floating">
+					<input type="text" class="form-control" id="manager" th:value="${sell.manager}" placeholder="담당자" th:readonly="${sell.manager != null}"> 
+					<label for="floatingPassword">담당자</label>
+				</div>
+			</div>
+			
+			<div class="col-4">
+				<div class="form-floating">
+					<input type="text" class="form-control" id="date" th:value="${#temporals.format(sell.sellDate, 'yyyy-MM-dd')}" placeholder="등록일" th:readonly="${sell.manager != null}"> 
+					<label for="floatingPassword">등록일</label>
+				</div>
+			</div>
+			
+		</div>
+			
+	</div>
+	
+	<!-- 등록한 제품 나타내는 위치 -->
+	<div class="container" style="margin-top: 20px;">
+		<table class="table table-bordered table-responsive">
+			<thead>
+				<tr>
+					<th scope="col">No</th>
+					<th scope="col">제품명</th>
+					<th scope="col">판매개수</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="order : ${order}">
+					<th scope="row" th:text="${orderStat.count}"></th>
+					<td th:text="${order.item.itemName}"></td>
+					<td th:text="${order.orderCount}"></td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+	
+</section>
+</body>
+<!-- Footer-->
+</html>

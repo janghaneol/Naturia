@@ -57,6 +57,13 @@ public class SellController {
 		return "sellList";
 	}
 	
+	@GetMapping("/list/{sellId}")
+	public String sellPageView(@PathVariable Integer sellId, Model model) {
+		model.addAttribute("sell", sellService.findSell(sellId));
+		model.addAttribute("order", orderService.findOrdersBySellId(sellId));
+		return "sellDetail";
+	}
+	
 	@GetMapping("/{sellId}")
 	public String sellOrderView(@PathVariable Integer sellId, Model model) {
 		List<Item> item = itemService.allItemView();

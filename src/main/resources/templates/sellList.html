@@ -13,7 +13,8 @@
 					<th scope="col">거래처명</th>
 					<th scope="col">담당자</th>
 					<th scope="col">판매 등록일</th>
-					<th scope="col"></th>
+					<th scope="col">전표</th>
+					<th scope="col">상태</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -22,6 +23,7 @@
 					<td><a th:text="${sell.store}"></a></td>
 					<td th:text="${sell.manager}"></td>
 					<td th:text="${#temporals.format(sell.sellDate, 'yyyy-MM-dd HH:mm:ss')}"></td>
+					<td><a class="btn btn-success btn-sm" th:text="조회" th:href="@{/sale/list/{id}(id = ${sell.sellId})}" th:onclick="window.open(this.href, '_blank', 'width=800, height=600'); return false;"></a></td>
 					<td><a class="btn btn-primary btn-sm" th:text="전표수정" th:href="@{/sale/{id}(id = ${sell.sellId})}"></a></td>
 				</tr>
 			</tbody>

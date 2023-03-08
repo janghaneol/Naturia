@@ -4,7 +4,10 @@
 <th:block th:replace="~{fragments/header :: headerFragment}"></th:block>
 <section class="py-5">
 	<div class="container w-50">
-		<h1 class="display-4 fw-bolder" style="text-align: center;">판매 등록</h1>
+		<th:block th:if="${sell.sellId == null}">
+			<h1 class="display-4 fw-bolder" style="text-align: center;">판매 등록</h1>
+		</th:block>
+			<h1 class="display-4 fw-bolder" style="text-align: center;">전표 입력</h1>
 		<!-- 판매등록 정보 -->
 		<div class="row">
 			<div class="col-6">
